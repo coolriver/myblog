@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/coolriver/myblog/issues"
   },
-  "homepage": "https://github.com/coolriver/myblog#readme"
+  "homepage": "https://github.com/coolriver/myblog#readme",
+  "dependencies": {
+    "hapi": "^13.4.0"
+  }
 }

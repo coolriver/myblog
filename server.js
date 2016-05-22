@@ -7,15 +7,16 @@ const server = new Hapi.Server();
 server.connection({ 
     host: '10.104.100.164', 
     port: 80 
+
 });
 
 // Add the route
 server.route({
     method: 'GET',
-    path:'/hello', 
+    path:'/{name}', 
     handler: function (request, reply) {
-
-        return reply('hello world');
+	console.log('get request');
+        return reply('hello' + encodeURIComponent(request.params.name + '!'));
     }
 });
 

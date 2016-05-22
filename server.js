@@ -1,30 +1,54 @@
 'use strict';
 
 const Hapi = require('hapi');
+const Good = require('good');
 
-// Create a server with a host and port
 const server = new Hapi.Server();
-server.connection({ 
-    host: '10.104.100.164', 
-    port: 80 
+server.connection({ port: 3000 });
 
-});
-
-// Add the route
 server.route({
     method: 'GET',
-    path:'/{name}', 
+    path: '/',
     handler: function (request, reply) {
-	console.log('get request');
-        return reply('hello' + encodeURIComponent(request.params.name + '!'));
+        reply('Hello, world!');
     }
 });
 
-// Start the server
-server.start((err) => {
+server.route({
+    method: 'GET',
+    path: '/{name}',
+    handler: function (request, reply) {
+        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+    }
+});
+
+server.register({
+    register: Good,
+    options: {
+        reporters: {
+            console: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{
+                    response: '*',
+                    log: '*'
+                }]
+            }, {
+                module: 'good-console'
+            }, 'stdout']
+        }
+    }
+}, (err) => {
 
     if (err) {
-        throw err;
+        throw err; // something bad happened loading the plugin
     }
-    console.log('Server running at:', server.info.uri);
+
+    server.start((err) => {
+
+        if (err) {
+           throw err;
+        }
+        server.log('info', 'Server running at: ' + server.info.uri);
+    });
 });

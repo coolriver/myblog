@@ -1,0 +1,1 @@
+var logFun = (a) => a * a;

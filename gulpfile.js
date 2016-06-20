@@ -8,13 +8,8 @@ var gulp = require('gulp'),
 gulp.task("webpack", function() {
     return gulp.src('src/pages/index/entry.js')
         .pipe(gulpWebpack(webpackConfig), webpack)
-        .pipe(gulp.dest('public/pages/'));
-});
-
-gulp.task('mini', function() {
-    return gulp.src('src/pages/**/main.js', {base: 'src'})
         .pipe(minify())
-        .pipe(gulp.dest('test'));
+        .pipe(gulp.dest('public/pages/'));
 });
 
 gulp.task('watch', function() {

@@ -31,6 +31,7 @@
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-minify": "0.0.12",
+    "gulp-rename": "^1.2.2",
     "gulp-webpack": "^1.5.0",
     "vinyl-named": "^1.1.0",
     "webpack": "^1.13.1",

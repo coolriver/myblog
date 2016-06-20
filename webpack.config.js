@@ -1,10 +1,16 @@
-var path = require('path');
+var path = require('path'),
+    getEntry = require('./webpack/getEntry'),
+    PATH_ROOT = __dirname, // jshint ignore:line
+    PATH_SRC = path.join(PATH_ROOT, '/src/pages'),
+    MAIN_FILE = 'main',
+    PUBLIC_FILE = 'bundle',
+    PATH_PUBLIC = path.join(PATH_ROOT, '/public/pages');
 
 module.exports = {
-    entry: './src/pages/index/main.js',
+    entry: getEntry(PATH_SRC, MAIN_FILE),
     output: {
-        path: path.join(__dirname, '/public/pages/index/'), // jshint ignore:line
-        filename: 'main.js'
+        path: PATH_PUBLIC,
+        filename: '[name]/' + PUBLIC_FILE + '.js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

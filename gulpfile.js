@@ -1,9 +1,7 @@
 var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
-    //gulpWebpack = require("gulp-webpack"),
     gulpWebpack = require('webpack-stream'),
     webpack = require('webpack'),
-    //named = require('vinyl-named'),
     minify = require('gulp-minify'),
     webpackConfig = require('./webpack.config');
 
@@ -20,8 +18,8 @@ gulp.task('mini', function() {
 });
 
 gulp.task('watch', function() {
-    //livereload.listen();
-    //gulp.watch(['src/**/*.js'], ['webpack']);
+    livereload.listen();
+    gulp.watch(['src/**/*.js'], ['webpack']);
 });
 
 gulp.task('default', [
